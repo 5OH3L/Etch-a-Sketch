@@ -18,9 +18,12 @@ let makeGrid = (gridSize) => {
             let column = document.createElement('div');
             column.className = "column";
             column.addEventListener('mouseover', (e)=>{
-                if (e.buttons == 1){
+                if (e.buttons == 1 || e.button == 1){
                     e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
                 }
+            });
+            column.addEventListener('mousedown', (e)=>{
+                e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
             });
             row.appendChild(column);
         }
@@ -32,9 +35,10 @@ makeGrid(10)
 
 button.addEventListener('click', (e) => {
     let input = +prompt("» Enter the grid layout:");
-    if (input > 100){
+    while (input > 100){
         input = +prompt("The max limit is 100x100!");
-    }else if (input == null || input == undefined || input == ""){
+    }
+    if (input == null || input == undefined || input == ""){
 
     }else{
         gridShow.textContent = `${input}x${input}`;
