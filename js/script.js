@@ -1,6 +1,7 @@
 const container = document.getElementById('container');
 const button = document.querySelector('#btn');
 const toggleBorder = document.querySelector('#borderOnOff');
+const reset = document.querySelector('#reset');
 let elements = Array.from(document.querySelectorAll('.column'));
 
 let gridShow = document.querySelector('#gridShow');
@@ -34,9 +35,19 @@ let makeGrid = (gridSize) => {
 makeGrid(10)
 
 button.addEventListener('click', (e) => {
-    let input = +prompt("» Enter the grid layout:");
-    while (input > 100){
-        input = +prompt("The max limit is 100x100!");
+    let input = prompt("» Enter the grid layout:");
+    // if (typeof(input) == "string"){
+    //     split = input.split('x');
+    //     if (split.length != 2){
+    //         return;
+    //     }else{
+    //         x = split[0];
+    //         y = split[1];
+    //         console.log(x,y);
+    //     };
+    // };
+    while (+input > 100 || +input < 0){
+        input = +prompt("The limit is from 1x1 to 100x100!");
     }
     if (input == null || input == undefined || input == ""){
 
@@ -52,4 +63,11 @@ toggleBorder.addEventListener('click', () =>{
         elements[i].classList.toggle("border1px");
     }
     container.classList.toggle('border2px')
+});
+
+reset.addEventListener('click', (e) =>{
+    elements = Array.from(document.querySelectorAll('.column'));
+    for (let i = 0; i < elements.length; i++){
+        elements[i].style.backgroundColor = "";
+    }
 });

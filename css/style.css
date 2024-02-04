@@ -16,16 +16,23 @@ html{
     background-color: black;
     color: white;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#mainContainer{
+    display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 #container{
     background-color: black;
     height: 80vh;
-    /* width: 100vw; */
     display: flex;
     flex-direction: column;
+    width: 50vw;
 }
 
 .row{
@@ -79,7 +86,6 @@ html{
 }
 #programmer{
     position: relative;
-    right: 3.7%;
     transition: ease .5s;
 }
 
@@ -95,4 +101,19 @@ html{
     padding: 5px;
     border-radius: 10px;
     padding: 5px 10px;
+}
+
+#reset{
+    background-color: red;
+    color: black;
+    border-radius: 10px;
+    padding: 5px 10px;
+    transition: ease .5s;
+    position: relative;
+    left: 6%;
+}
+#reset:hover{
+    transform: scale(.9);
+    box-shadow: 0 0 100px 10px red;
+    cursor: pointer;
 }
