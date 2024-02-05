@@ -57,7 +57,7 @@ let makeGrid = (gridSize) => {
 makeGrid(10)
 
 button.addEventListener('click', (e) => {
-    let input = prompt("» Enter the grid layout:", "How many dads do you have ?");
+    let input = prompt("» Enter the grid layout:");
     while(true){
         if(isNaN(input)){
             let newInput = input.split('x');
@@ -73,8 +73,10 @@ button.addEventListener('click', (e) => {
                 gridShow.textContent = `${+input}x${+input}`;
                 makeGrid(input);
                 break;
+            }else if (+input == null || +input == undefined || +input == ""){
+                break;
             }else{
-                input = prompt("» Out of range ( 1 - 1000 ):", "If your can handle Ofcourse :]");
+                input = prompt("» Out of range ( 1 - 1000 ):", 100);
             }
         }
     };
