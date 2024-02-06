@@ -86,6 +86,14 @@ button.addEventListener('click', (e) => {
             if(newInput.length == 2 && !isNaN(newInput[0]) && !isNaN(newInput[1])){
                 gridShow.textContent = `${+newInput[0]}x${+newInput[1]}`;
                 makeGrid(newInput);
+                isRainbow = true;
+                isEraser = false;
+                eraser.style.backgroundColor = "transparent";
+                eraser.style.color = "white";
+                eraser.style.border = "2px solid white";
+                rainbow.style.backgroundColor = "gray";
+                rainbow.style.color = "black";
+                rainbow.style.border = "2px solid black";
                 break;
             }else{
                 input = prompt("» Invalid Input:", "Are you dumb?");
@@ -94,6 +102,14 @@ button.addEventListener('click', (e) => {
             if(!isNaN(input) && input > 0 && input <= 1000){
                 gridShow.textContent = `${+input}x${+input}`;
                 makeGrid(input);
+                isRainbow = true;
+                isEraser = false;
+                eraser.style.backgroundColor = "transparent";
+                eraser.style.color = "white";
+                eraser.style.border = "2px solid white";
+                rainbow.style.backgroundColor = "gray";
+                rainbow.style.color = "black";
+                rainbow.style.border = "2px solid black";
                 break;
             }else if (+input == null || +input == undefined || +input == ""){
                 break;
