@@ -167,8 +167,10 @@ toggleBorder.addEventListener('click', () =>{
 reset.addEventListener('click', (e) =>{
     document.querySelectorAll("div#container div.row div.column").forEach((value)=> value.style.backgroundColor = "");
     document.querySelectorAll("div#container div.row div.column").forEach((value)=> singularColor(value));
-    isRainbow = true;
+    isSingleColor = true;
+    isRainbow = false;
     isEraser = false;
+    isToggleBorder = false;
     eraser.style.backgroundColor = "transparent";
     eraser.style.color = "white";
     eraser.style.border = "2px solid white";
