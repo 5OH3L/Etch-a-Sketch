@@ -88,6 +88,7 @@ button.addEventListener('click', (e) => {
                 makeGrid(newInput);
                 isRainbow = true;
                 isEraser = false;
+                isToggleBorder = false;
                 eraser.style.backgroundColor = "transparent";
                 eraser.style.color = "white";
                 eraser.style.border = "2px solid white";
@@ -104,12 +105,16 @@ button.addEventListener('click', (e) => {
                 makeGrid(input);
                 isRainbow = true;
                 isEraser = false;
+                isToggleBorder = false;
                 eraser.style.backgroundColor = "transparent";
                 eraser.style.color = "white";
                 eraser.style.border = "2px solid white";
                 rainbow.style.backgroundColor = "gray";
                 rainbow.style.color = "black";
                 rainbow.style.border = "2px solid black";
+                toggleBorder.style.backgroundColor = "";
+                toggleBorder.style.color = "white";
+                toggleBorder.style.border = "2px solid white";
                 break;
             }else if (+input == null || +input == undefined || +input == ""){
                 break;
