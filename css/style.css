@@ -90,7 +90,7 @@ html, body{
     text-align: center;
     padding: 5px 10px;
     border-radius: 10px;
-    transition: transform .5s ease, box-shadow .5s ease ;
+    transition: .5s ease;
     font-size: 1.3rem;
     letter-spacing: .1rem;
 }
@@ -100,16 +100,24 @@ html, body{
 }
 
 .button:active{
-    transition: transform .1s;
     transform: scale(.85);
 }
 
 .rainbow{
-    animation: rainbow 2s infinite;
+    animation: rainbow 5s infinite;
+}
+#rainbow{
+    transition: .5s ease;
+}
+#rainbow:hover{
+    animation: rainbow 5s infinite;
+}
+
+#reset{
+    transition: all .5s;
 }
 
 #reset:hover{
-    transition: all .5s,background-color .5s;
     background-color: red;
 }
 #reset:active{

@@ -166,13 +166,13 @@ toggleBorder.addEventListener('click', () =>{
 
 reset.addEventListener('click', (e) =>{
     document.querySelectorAll("div#container div.row div.column").forEach((value)=> value.style.backgroundColor = "");
-    document.querySelectorAll("div#container div.row div.column").forEach((value)=> rainbowColor(value));
+    document.querySelectorAll("div#container div.row div.column").forEach((value)=> singularColor(value));
     isRainbow = true;
     isEraser = false;
     eraser.style.backgroundColor = "transparent";
     eraser.style.color = "white";
     eraser.style.border = "2px solid white";
-    rainbow.style.animation = "rainbow 10s infinite";
+    rainbow.style.animation = "none";
 });
 
 eraser.addEventListener("click", () =>{
