@@ -95,6 +95,9 @@ button.addEventListener('click', (e) => {
                 rainbow.style.backgroundColor = "gray";
                 rainbow.style.color = "black";
                 rainbow.style.border = "2px solid black";
+                toggleBorder.style.backgroundColor = "";
+                toggleBorder.style.color = "white";
+                toggleBorder.style.border = "2px solid white";
                 break;
             }else{
                 input = prompt("» Invalid Input:", "Are you dumb?");
