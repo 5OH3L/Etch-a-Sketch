@@ -212,10 +212,6 @@ rainbow.addEventListener("click", () =>{
     }
 });
 
-colorPicker.addEventListener('onchange', () => {
-    document.querySelectorAll("div#container div.row div.column").forEach((value)=> singularColor(value));
-});
-
 singleColor.addEventListener('click', () => {
     console.log("clicked");
     document.querySelectorAll("div#container div.row div.column").forEach((value) => singularColor(value));
