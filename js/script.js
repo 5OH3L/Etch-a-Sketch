@@ -2,12 +2,38 @@ const container = document.getElementById('container');
 const button = document.querySelector('#btn');
 const toggleBorder = document.querySelector('#borderOnOff');
 const reset = document.querySelector('#reset');
+const eraser = document.querySelector('#eraser');
+const rainbow = document.querySelector('#rainbow');
 let elements = Array.from(document.querySelectorAll('.column'));
 
 let gridShow = document.querySelector('#gridShow');
 gridShow.textContent = "10x10";
 
 let randomNum255 = () => Math.floor((Math.random()*255)+1);
+
+let rainbowColor = (event) => {
+    event.addEventListener('mouseover', (e)=>{
+        if (e.buttons == 1 || e.button == 1){
+            e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
+        }
+    });
+    event.addEventListener('click', (e)=>{
+        e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
+    });
+
+};
+
+let eraseColor = (event) => {
+    event.addEventListener('mouseover', (e)=>{
+        if (e.buttons == 1 || e.button == 1){
+            e.target.style.backgroundColor = "transparent";
+        }
+    });
+    event.addEventListener('click', (e)=>{
+        e.target.style.backgroundColor = "transparent";
+    });
+
+};
 
 let makeGrid = (gridSize) => {
     container.innerHTML = "";
@@ -19,14 +45,7 @@ let makeGrid = (gridSize) => {
             for (let j = 0; j < +gridSize[0]; j++){
                 let column = document.createElement('div');
                 column.className = "column";
-                column.addEventListener('mouseover', (e)=>{
-                    if (e.buttons == 1 || e.button == 1){
-                        e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
-                    }
-                });
-                column.addEventListener('mousedown', (e)=>{
-                    e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
-                });
+                rainbowColor(column);
                 row.appendChild(column);
             }
             container.appendChild(row);
@@ -39,14 +58,7 @@ let makeGrid = (gridSize) => {
             for (let j = 0; j < +gridSize; j++){
                 let column = document.createElement('div');
                 column.className = "column";
-                column.addEventListener('mouseover', (e)=>{
-                    if (e.buttons == 1 || e.button == 1){
-                        e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
-                    }
-                });
-                column.addEventListener('mousedown', (e)=>{
-                    e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
-                });
+                rainbowColor(column);
                 row.appendChild(column);
             }
             container.appendChild(row);
@@ -131,4 +143,18 @@ reset.addEventListener('click', (e) =>{
     for (let i = 0; i < elements.length; i++){
         elements[i].style.backgroundColor = "";
     }
+});
+
+eraser.addEventListener("click", () =>{
+    let elements = document.querySelectorAll("div#container div.row div.column");
+    elements.forEach((value)=>{
+        eraseColor(value);
+    })
+});
+
+rainbow.addEventListener("click", () =>{
+    let elements = document.querySelectorAll("div#container div.row div.column");
+    elements.forEach((value)=>{
+        rainbowColor(value);
+    })
 });
