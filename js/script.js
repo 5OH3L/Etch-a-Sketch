@@ -1,13 +1,11 @@
 const container = document.getElementById('container');
-const button = document.querySelector('#btn');
-const toggleBorder = document.querySelector('#borderOnOff');
-const reset = document.querySelector('#reset');
-const eraser = document.querySelector('#eraser');
-const rainbow = document.querySelector('#rainbow');
+const button = document.getElementById('btn');
+const toggleBorder = document.getElementById('borderOnOff');
+const reset = document.getElementById('reset');
+const eraser = document.getElementById('eraser');
+const rainbow = document.getElementById('rainbow');
 
-rainbow.style.backgroundColor = "gray";
-rainbow.style.color = "black";
-rainbow.style.border = "2px solid black";
+rainbow.style.animation = "rainbow 10s infinite";
 
 let isRainbow = true;
 let isEraser = false;
@@ -27,7 +25,7 @@ let rainbowColor = (event) => {
             e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
         }
     });
-    event.addEventListener('click', (e)=>{
+    event.addEventListener('mousedown', (e)=>{
         e.target.style.backgroundColor = `rgb(${randomNum255()},${randomNum255()},${randomNum255()})`;
     });
 
@@ -39,7 +37,7 @@ let eraseColor = (event) => {
             e.target.style.backgroundColor = "transparent";
         }
     });
-    event.addEventListener('click', (e)=>{
+    event.addEventListener('mousedown', (e)=>{
         e.target.style.backgroundColor = "transparent";
     });
 
@@ -92,9 +90,7 @@ button.addEventListener('click', (e) => {
                 eraser.style.backgroundColor = "transparent";
                 eraser.style.color = "white";
                 eraser.style.border = "2px solid white";
-                rainbow.style.backgroundColor = "gray";
-                rainbow.style.color = "black";
-                rainbow.style.border = "2px solid black";
+                rainbow.style.animation = "rainbow 10s infinite";
                 toggleBorder.style.backgroundColor = "";
                 toggleBorder.style.color = "white";
                 toggleBorder.style.border = "2px solid white";
@@ -112,9 +108,7 @@ button.addEventListener('click', (e) => {
                 eraser.style.backgroundColor = "transparent";
                 eraser.style.color = "white";
                 eraser.style.border = "2px solid white";
-                rainbow.style.backgroundColor = "gray";
-                rainbow.style.color = "black";
-                rainbow.style.border = "2px solid black";
+                rainbow.style.animation = "rainbow 10s infinite";
                 toggleBorder.style.backgroundColor = "";
                 toggleBorder.style.color = "white";
                 toggleBorder.style.border = "2px solid white";
@@ -151,9 +145,7 @@ reset.addEventListener('click', (e) =>{
     eraser.style.backgroundColor = "transparent";
     eraser.style.color = "white";
     eraser.style.border = "2px solid white";
-    rainbow.style.backgroundColor = "gray";
-    rainbow.style.color = "black";
-    rainbow.style.border = "2px solid black";
+    rainbow.style.animation = "rainbow 10s infinite";
 });
 
 eraser.addEventListener("click", () =>{
@@ -163,6 +155,7 @@ eraser.addEventListener("click", () =>{
         eraser.style.backgroundColor = "gray";
         eraser.style.color = "black";
         eraser.style.border = "2px solid black";
+        rainbow.style.animation = "none";
         rainbow.style.backgroundColor = "transparent";
         rainbow.style.color = "white";
         rainbow.style.border = "2px solid white";
@@ -172,9 +165,7 @@ eraser.addEventListener("click", () =>{
         eraser.style.backgroundColor = "transparent";
         eraser.style.color = "white";
         eraser.style.border = "2px solid white";
-        rainbow.style.backgroundColor = "gray";
-        rainbow.style.color = "black";
-        rainbow.style.border = "2px solid black";
+        rainbow.style.animation = "rainbow 10s infinite";
     }
 });
 
@@ -185,15 +176,14 @@ rainbow.addEventListener("click", () =>{
         eraser.style.backgroundColor = "transparent";
         eraser.style.color = "white";
         eraser.style.border = "2px solid white";
-        rainbow.style.backgroundColor = "gray";
-        rainbow.style.color = "black";
-        rainbow.style.border = "2px solid black";
+        rainbow.style.animation = "rainbow 10s infinite";
         document.querySelectorAll("div#container div.row div.column").forEach((value)=> rainbowColor(value));
     }else{
         document.querySelectorAll("div#container div.row div.column").forEach((value)=> eraseColor(value));
         eraser.style.backgroundColor = "gray";
         eraser.style.color = "black";
         eraser.style.border = "2px solid black";
+        rainbow.style.animation = "none";
         rainbow.style.backgroundColor = "transparent";
         rainbow.style.color = "white";
         rainbow.style.border = "2px solid white";
