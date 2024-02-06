@@ -4,6 +4,16 @@ const toggleBorder = document.querySelector('#borderOnOff');
 const reset = document.querySelector('#reset');
 const eraser = document.querySelector('#eraser');
 const rainbow = document.querySelector('#rainbow');
+
+rainbow.style.backgroundColor = "gray";
+rainbow.style.color = "black";
+rainbow.style.border = "2px solid black";
+
+let isRainbow = true;
+let isEraser = false;
+let isToggleBorder = false;
+
+
 let elements = Array.from(document.querySelectorAll('.column'));
 
 let gridShow = document.querySelector('#gridShow');
@@ -92,69 +102,67 @@ button.addEventListener('click', (e) => {
             }
         }
     };
-
-    //              Old conditional statement
-    // if(isNaN(+input)){
-    //     let newInput = input.split('x');
-    //     if(newInput.length == 2){
-    //         gridShow.textContent = `${+newInput[0]}x${+newInput[1]}`;
-    //         makeGrid(newInput);
-    //     }else{
-    //         while(true){
-    //             input = prompt("» Enter the grid layout:", "Only 1 or 2 arguments you dumb?");
-    //             if (isNaN(input)){
-    //                 newInput = input.split('x');
-    //                 gridShow.textContent = `${+newInput[0]}x${+newInput[1]}`;
-    //                 makeGrid(newInput);
-    //                 loop = 0;
-    //             }else{
-    //                 gridShow.textContent = `${input}x${input}`;
-    //                 makeGrid(input);
-    //                 loop = 0;
-    //             }
-    //         }
-    //         gridShow.textContent = `${+newInput[0]}x${+newInput[1]}`;
-    //         makeGrid(newInput);
-    //     }
-
-    // }else{
-    //     while (+input >= 1000 || +input < 0){
-    //         input = prompt("The limit is from 1x1 to 1000x1000 (If you pc can handle)!");
-    //     }
-    //     if (input == null || input == undefined || input == ""){
-    
-    //     }else if (typeof(+input) == "number"){
-    //         gridShow.textContent = `${input}x${input}`;
-    //         makeGrid(input);
-    //     }
-    // }
 });
 
 toggleBorder.addEventListener('click', () =>{
-    elements = Array.from(document.querySelectorAll('.column'));
-    for (let i = 0; i < elements.length; i++){
-        elements[i].classList.toggle("border1px");
+    isToggleBorder = !isToggleBorder
+    if(isToggleBorder){
+        toggleBorder.style.backgroundColor = "gray";
+        toggleBorder.style.color = "black";
+        toggleBorder.style.border = "2px solid black";
+    }else{
+        toggleBorder.style.backgroundColor = "";
+        toggleBorder.style.color = "white";
+        toggleBorder.style.border = "2px solid white";
     }
+    document.querySelectorAll("div#container div.row div.column").forEach((value)=> value.classList.toggle('border1px'))
     container.classList.toggle('border2px')
 });
 
 reset.addEventListener('click', (e) =>{
-    elements = Array.from(document.querySelectorAll('.column'));
-    for (let i = 0; i < elements.length; i++){
-        elements[i].style.backgroundColor = "";
-    }
+    document.querySelectorAll("div#container div.row div.column").forEach((value)=> value.style.backgroundColor = "");
 });
 
 eraser.addEventListener("click", () =>{
-    let elements = document.querySelectorAll("div#container div.row div.column");
-    elements.forEach((value)=>{
-        eraseColor(value);
-    })
+    isEraser = !isEraser;
+    isRainbow = !isRainbow;
+    if (isEraser){
+        eraser.style.backgroundColor = "gray";
+        eraser.style.color = "black";
+        eraser.style.border = "2px solid black";
+        rainbow.style.backgroundColor = "transparent";
+        rainbow.style.color = "white";
+        rainbow.style.border = "2px solid white";
+        document.querySelectorAll("div#container div.row div.column").forEach((value)=> eraseColor(value));
+    }else{
+        document.querySelectorAll("div#container div.row div.column").forEach((value)=> rainbowColor(value));
+        eraser.style.backgroundColor = "transparent";
+        eraser.style.color = "white";
+        eraser.style.border = "2px solid white";
+        rainbow.style.backgroundColor = "gray";
+        rainbow.style.color = "black";
+        rainbow.style.border = "2px solid black";
+    }
 });
 
 rainbow.addEventListener("click", () =>{
-    let elements = document.querySelectorAll("div#container div.row div.column");
-    elements.forEach((value)=>{
-        rainbowColor(value);
-    })
+    isEraser = !isEraser;
+    isRainbow = !isRainbow;
+    if (isRainbow){
+        eraser.style.backgroundColor = "transparent";
+        eraser.style.color = "white";
+        eraser.style.border = "2px solid white";
+        rainbow.style.backgroundColor = "gray";
+        rainbow.style.color = "black";
+        rainbow.style.border = "2px solid black";
+        document.querySelectorAll("div#container div.row div.column").forEach((value)=> rainbowColor(value));
+    }else{
+        document.querySelectorAll("div#container div.row div.column").forEach((value)=> eraseColor(value));
+        eraser.style.backgroundColor = "gray";
+        eraser.style.color = "black";
+        eraser.style.border = "2px solid black";
+        rainbow.style.backgroundColor = "transparent";
+        rainbow.style.color = "white";
+        rainbow.style.border = "2px solid white";
+    }
 });
