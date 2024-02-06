@@ -20,6 +20,7 @@ html, body{
     border: 2px solid white;
     padding: 30px;
     height: 70vh;
+    width:  20vw;
     border-radius: 50px;
 }
 
@@ -36,9 +37,9 @@ html, body{
     background-color: black;
     display: flex;
     flex-direction: column;
-    width: 42vw;
+    width: 40vw;
     display: flex;
-    height: 84vh;
+    height: 80vh;
     justify-content: space-around;
     background-color: black;
     color: white;
@@ -183,3 +184,7 @@ html, body{
     border: 2px solid gray;
 }
 #colorPickerLabel:hover { box-shadow: 0 0 0 0 white }
+#singleColor{
+    color: black;
+    border: 2px solid gray;
+}
