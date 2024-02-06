@@ -160,21 +160,26 @@ html, body{
 }
 @keyframes rainbowBoxShadow{
     from{
-        background-color: blueviolet;
-        box-shadow: 0 0 50px 10px blueviolet;
+        box-shadow: 0 0 100px 2px blue;
     }
-    50%{
-        background-color: blue;
-        box-shadow: 0 0 50px 10px blue;
+    33%{
+        box-shadow: 0 0 100px 2px red;
+    }
+    66%{
+        box-shadow: 0 0 100px 2px green;
     }
     to{
-        background-color: blueviolet;
-        box-shadow: 0 0 50px 10px blueviolet;
+        box-shadow: 0 0 100px 2px blue;
     }
 }
-
 #gridShow{
     text-align: center;
     height: 5vh;
     color: white;
 }
+#colorPickerLabel{
+    padding: .4rem 2rem;
+    color: black;
+    border: 2px solid gray;
+}
+#colorPickerLabel:hover { box-shadow: 0 0 0 0 white }

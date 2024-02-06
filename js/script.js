@@ -4,10 +4,20 @@ const toggleBorder = document.getElementById('borderOnOff');
 const reset = document.getElementById('reset');
 const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
+const colorPicker = document.getElementById('colorPicker');
+const colorPickerLabel = document.getElementById('colorPickerLabel');
+const singleColor = document.getElementById('singleColor');
+
+colorPicker.value = "#FFFFFF";
+
+document.body.addEventListener('mouseover', () => {
+    colorPickerLabel.style.backgroundColor = colorPicker.value;
+});
 
 rainbow.style.animation = "rainbow 10s infinite";
 
-let isRainbow = true;
+let isSingleColor = true;
+let isRainbow = false;
 let isEraser = false;
 let isToggleBorder = false;
 
@@ -43,6 +53,18 @@ let eraseColor = (event) => {
 
 };
 
+let singularColor = (event) => {
+    event.addEventListener('mouseover', (e)=>{
+        if (e.buttons == 1 || e.button == 1){
+            e.target.style.backgroundColor = `${colorPicker.value}`;
+        }
+    });
+    event.addEventListener('mousedown', (e)=>{
+        e.target.style.backgroundColor = `${colorPicker.value}`;
+    });
+
+};
+
 let makeGrid = (gridSize) => {
     container.innerHTML = "";
     container.className = 'border2px';
@@ -53,7 +75,7 @@ let makeGrid = (gridSize) => {
             for (let j = 0; j < +gridSize[0]; j++){
                 let column = document.createElement('div');
                 column.className = "column";
-                rainbowColor(column);
+                singularColor(column);
                 row.appendChild(column);
             }
             container.appendChild(row);
@@ -66,7 +88,7 @@ let makeGrid = (gridSize) => {
             for (let j = 0; j < +gridSize; j++){
                 let column = document.createElement('div');
                 column.className = "column";
-                rainbowColor(column);
+                singularColor(column);
                 row.appendChild(column);
             }
             container.appendChild(row);
@@ -188,4 +210,13 @@ rainbow.addEventListener("click", () =>{
         rainbow.style.color = "white";
         rainbow.style.border = "2px solid white";
     }
+});
+
+colorPicker.addEventListener('onchange', () => {
+    document.querySelectorAll("div#container div.row div.column").forEach((value)=> singularColor(value));
+});
+
+singleColor.addEventListener('click', () => {
+    console.log("clicked");
+    document.querySelectorAll("div#container div.row div.column").forEach((value) => singularColor(value));
 });
