@@ -96,6 +96,7 @@ let getInput = () =>{
         }else{
             popupText.textContent = "» Invalid Input:";
             popup.placeholder = "Are you dumb?";
+            popup.focus();
         }
     }else{
         if(!isNaN(input) && input > 0 && input <= 1000){
@@ -124,6 +125,7 @@ let getInput = () =>{
         }else{
             popupText.textContent = "» Out of range:";
             popup.placeholder = "Select between 1 - 1000";
+            popup.focus();
         };
     };
 };
@@ -162,15 +164,10 @@ let makeGrid = (gridSize) => {
 makeGrid(10)
 
 confirmBtn.addEventListener('click', getInput);
-cancelBtn.addEventListener('click', () =>{
-    popupContainer.classList.toggle('active');
-    blurAll.classList.toggle('active');
-    popup.value = '';
-});
+cancelBtn.addEventListener('click', getInput);
 
-button.addEventListener('click', function buttonClick (e) {
-    popupContainer.classList.toggle('active');
-    blurAll.classList.toggle('active');
+button.addEventListener('click', () => {
+    getInput();
     popup.focus();
 });
 
