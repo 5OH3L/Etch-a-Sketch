@@ -166,9 +166,9 @@ makeGrid(10)
 confirmBtn.addEventListener('click', getInput);
 cancelBtn.addEventListener('click', getInput);
 popup.addEventListener('keydown', (e)=>{
-    if(e.code == "Enter"){
+    if(e.key == "Enter"){
         getInput();
-    }else if(e.code == "Escape"){
+    }else if(e.key == "Escape"){
         popupContainer.classList.toggle('active');
         blurAll.classList.toggle('active');
         popupText.textContent = "» Enter the grid layout:";
