@@ -5,11 +5,8 @@ const reset = document.getElementById('reset');
 const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
 const colorPicker = document.getElementById('colorPicker');
-const colorPickerLabel = document.getElementById('colorPickerLabel');
 const singleColor = document.getElementById('singleColor');
 
-colorPicker.value = "#FFFFFF";
-colorPickerLabel.style.backgroundColor = colorPicker.value;
 singleColor.style.backgroundColor = colorPicker.value;
 
 let isSingleColor = true;
@@ -18,7 +15,6 @@ let isEraser = false;
 let isToggleBorder = false;
 
 document.body.addEventListener('mouseover', () => {
-    colorPickerLabel.style.backgroundColor = colorPicker.value;
     if (isSingleColor){
         singleColor.style.backgroundColor = colorPicker.value;
     }
@@ -72,10 +68,10 @@ let makeGrid = (gridSize) => {
     container.innerHTML = "";
     container.className = 'border2px';
     if (typeof(gridSize) == 'object'){
-        for (let i = 0; i < +gridSize[1]; i++){
+        for (let i = 0; i < Math.round(+gridSize[1]); i++){
             let row = document.createElement('div');
             row.className = "row";
-            for (let j = 0; j < +gridSize[0]; j++){
+            for (let j = 0; j < Math.round(+gridSize[0]); j++){
                 let column = document.createElement('div');
                 column.className = "column";
                 singularColor(column);
@@ -85,10 +81,10 @@ let makeGrid = (gridSize) => {
         }
     }
     else{
-        for (let i = 0; i < +gridSize; i++){
+        for (let i = 0; i < Math.round(+gridSize); i++){
             let row = document.createElement('div');
             row.className = "row";
-            for (let j = 0; j < +gridSize; j++){
+            for (let j = 0; j < Math.round(+gridSize); j++){
                 let column = document.createElement('div');
                 column.className = "column";
                 singularColor(column);
@@ -107,7 +103,7 @@ button.addEventListener('click', (e) => {
         if(isNaN(input)){
             let newInput = input.split('x');
             if(newInput.length == 2 && !isNaN(newInput[0]) && !isNaN(newInput[1])){
-                gridShow.textContent = `${+newInput[0]}x${+newInput[1]}`;
+                gridShow.textContent = `${Math.round(+newInput[0])}x${Math.round(+newInput[1])}`;
                 makeGrid(newInput);
                 isSingleColor = true;
                 isRainbow = false;
@@ -126,7 +122,7 @@ button.addEventListener('click', (e) => {
             }
         }else{
             if(!isNaN(input) && input > 0 && input <= 1000){
-                gridShow.textContent = `${+input}x${+input}`;
+                gridShow.textContent = `${Math.round(+input)}x${Math.round(+input)}`;
                 makeGrid(input);
                 isSingleColor = true;
                 isRainbow = false;
@@ -150,18 +146,21 @@ button.addEventListener('click', (e) => {
 });
 
 toggleBorder.addEventListener('click', () =>{
-    isToggleBorder = !isToggleBorder
-    if(isToggleBorder){
-        toggleBorder.style.backgroundColor = "gray";
+    if(!isToggleBorder){
+        document.querySelectorAll("div#container div.row div.column").forEach((value)=> value.classList.toggle('border1px'))
+        container.classList.toggle('border2px')
+        toggleBorder.style.backgroundColor = "white";
         toggleBorder.style.color = "black";
         toggleBorder.style.border = "2px solid black";
+        isToggleBorder = !isToggleBorder;
     }else{
+        document.querySelectorAll("div#container div.row div.column").forEach((value)=> value.classList.toggle('border1px'))
+        container.classList.toggle('border2px')
         toggleBorder.style.backgroundColor = "";
         toggleBorder.style.color = "white";
         toggleBorder.style.border = "2px solid white";
+        isToggleBorder = !isToggleBorder;
     }
-    document.querySelectorAll("div#container div.row div.column").forEach((value)=> value.classList.toggle('border1px'))
-    container.classList.toggle('border2px')
 });
 
 reset.addEventListener('click', (e) =>{
@@ -175,11 +174,15 @@ reset.addEventListener('click', (e) =>{
     eraser.style.color = "white";
     eraser.style.border = "2px solid white";
     rainbow.style.animation = "none";
+    colorPicker.value = "#FFFFFF";
+    singleColor.style.background = "white";
+    singleColor.style.color = "black";
+    singleColor.style.border = "2px solid black"
 });
 
 eraser.addEventListener("click", () =>{
     if (!isEraser && (isRainbow || isSingleColor)){
-        eraser.style.backgroundColor = "gray";
+        eraser.style.backgroundColor = "white";
         eraser.style.color = "black";
         eraser.style.border = "2px solid black";
         document.querySelectorAll("div#container div.row div.column").forEach((value)=> eraseColor(value));
@@ -210,10 +213,10 @@ rainbow.addEventListener("click", () =>{
         if(isEraser){
             isEraser = !isEraser;
         }else{
-            isSingleColor = !isSingleColor;
             singleColor.style.backgroundColor = "transparent";
-            singleColor.style.border = "2px solid white";
             singleColor.style.color = "white";
+            singleColor.style.border = "2px solid white";
+            isSingleColor = !isSingleColor;
         }
     }
 });
@@ -223,7 +226,7 @@ singleColor.addEventListener('click', () => {
         document.querySelectorAll("div#container div.row div.column").forEach((value) => singularColor(value));
         singleColor.style.backgroundColor = colorPicker.value;
         singleColor.style.color = "black";
-        singleColor.style.border = "2px solid gray";
+        singleColor.style.border = "2px solid black";
         isSingleColor = !isSingleColor;
         if(isRainbow){
             rainbow.style.backgroundColor = "transparent";
