@@ -6,6 +6,12 @@ const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
 const colorPicker = document.getElementById('colorPicker');
 const singleColor = document.getElementById('singleColor');
+const popupContainer = document.getElementById('popupContainer');
+const popup = document.getElementById('popup');
+const blurAll = document.getElementById('blurAll');
+const cancelBtn = document.getElementById('cancel');
+const confirmBtn = document.getElementById('confirm');
+const popupText = document.getElementById('popupText');
 
 singleColor.style.backgroundColor = colorPicker.value;
 
@@ -64,6 +70,64 @@ let singularColor = (event) => {
 
 };
 
+let getInput = () =>{
+    let input = popup.value;
+    popup.value = '';
+    if(isNaN(input)){
+        let newInput = input.split('x');
+        if(newInput.length == 2 && !isNaN(newInput[0]) && !isNaN(newInput[1])){
+            gridShow.textContent = `${Math.round(+newInput[0])}x${Math.round(+newInput[1])}`;
+            makeGrid(newInput);
+            isSingleColor = true;
+            isRainbow = false;
+            isEraser = false;
+            isToggleBorder = false;
+            eraser.style.backgroundColor = "transparent";
+            eraser.style.color = "white";
+            eraser.style.border = "2px solid white";
+            rainbow.style.animation = "none";
+            toggleBorder.style.backgroundColor = "";
+            toggleBorder.style.color = "white";
+            toggleBorder.style.border = "2px solid white";
+            popupContainer.classList.toggle('active');
+            blurAll.classList.toggle('active');
+            popupText.textContent = "» Enter the grid layout:";
+            popup.placeholder = "Type here...";
+        }else{
+            popupText.textContent = "» Invalid Input:";
+            popup.placeholder = "Are you dumb?";
+        }
+    }else{
+        if(!isNaN(input) && input > 0 && input <= 1000){
+            gridShow.textContent = `${Math.round(+input)}x${Math.round(+input)}`;
+            makeGrid(input);
+            isSingleColor = true;
+            isRainbow = false;
+            isEraser = false;
+            isToggleBorder = false;
+            eraser.style.backgroundColor = "transparent";
+            eraser.style.color = "white";
+            eraser.style.border = "2px solid white";
+            rainbow.style.animation = "none";
+            toggleBorder.style.backgroundColor = "";
+            toggleBorder.style.color = "white";
+            toggleBorder.style.border = "2px solid white";
+            popupContainer.classList.toggle('active');
+            blurAll.classList.toggle('active');
+            popupText.textContent = "» Enter the grid layout:";
+            popup.placeholder = "Type here...";
+        }else if (+input == null || +input == undefined || +input == ""){
+            popupContainer.classList.toggle('active');
+            blurAll.classList.toggle('active');
+            popupText.textContent = "» Enter the grid layout:";
+            popup.placeholder = "Type here...";
+        }else{
+            popupText.textContent = "» Out of range:";
+            popup.placeholder = "Select between 1 - 1000";
+        };
+    };
+};
+
 let makeGrid = (gridSize) => {
     container.innerHTML = "";
     container.className = 'border2px';
@@ -97,52 +161,17 @@ let makeGrid = (gridSize) => {
 
 makeGrid(10)
 
-button.addEventListener('click', (e) => {
-    let input = prompt("» Enter the grid layout:");
-    while(true){
-        if(isNaN(input)){
-            let newInput = input.split('x');
-            if(newInput.length == 2 && !isNaN(newInput[0]) && !isNaN(newInput[1])){
-                gridShow.textContent = `${Math.round(+newInput[0])}x${Math.round(+newInput[1])}`;
-                makeGrid(newInput);
-                isSingleColor = true;
-                isRainbow = false;
-                isEraser = false;
-                isToggleBorder = false;
-                eraser.style.backgroundColor = "transparent";
-                eraser.style.color = "white";
-                eraser.style.border = "2px solid white";
-                rainbow.style.animation = "none";
-                toggleBorder.style.backgroundColor = "";
-                toggleBorder.style.color = "white";
-                toggleBorder.style.border = "2px solid white";
-                break;
-            }else{
-                input = prompt("» Invalid Input:", "Are you dumb?");
-            }
-        }else{
-            if(!isNaN(input) && input > 0 && input <= 1000){
-                gridShow.textContent = `${Math.round(+input)}x${Math.round(+input)}`;
-                makeGrid(input);
-                isSingleColor = true;
-                isRainbow = false;
-                isEraser = false;
-                isToggleBorder = false;
-                eraser.style.backgroundColor = "transparent";
-                eraser.style.color = "white";
-                eraser.style.border = "2px solid white";
-                rainbow.style.animation = "none";
-                toggleBorder.style.backgroundColor = "";
-                toggleBorder.style.color = "white";
-                toggleBorder.style.border = "2px solid white";
-                break;
-            }else if (+input == null || +input == undefined || +input == ""){
-                break;
-            }else{
-                input = prompt("» Out of range ( 1 - 1000 ):", 100);
-            }
-        }
-    };
+confirmBtn.addEventListener('click', getInput);
+cancelBtn.addEventListener('click', () =>{
+    popupContainer.classList.toggle('active');
+    blurAll.classList.toggle('active');
+    popup.value = '';
+});
+
+button.addEventListener('click', function buttonClick (e) {
+    popupContainer.classList.toggle('active');
+    blurAll.classList.toggle('active');
+    popup.focus();
 });
 
 toggleBorder.addEventListener('click', () =>{

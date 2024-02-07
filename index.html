@@ -10,12 +10,23 @@
 </head>
 <body>
     <div id="allContainer">
+        <div id="popupContainer" class="popupContainer">
+            <div class="popupHeader">
+                <h1 id="popupText">» Enter the grid layout:</h1>
+            </div>
+            <div class="popupContent">
+                <input type="text" name="popup" id="popup" class="popup" placeholder="Type here...">
+            </div>
+            <div class="popupFooter">
+                <button id="cancel">Cancel</button>
+                <button id="confirm">Confirm</button>
+            </div>
+        </div>
         <div id="programmer">Etch-a-Sketch By&nbsp;<a href="https://github.com/5OH3L" target="_blank" rel="noopener noreferrer">&#169; S O H E L</a></div>
         <h1 id="gridShow"></h1>
         <div id="mainContainer">
             <div id="leftBtnContainer">
                 <div id="colorPickerContainer">
-                    <!-- <h1 id="colorPickerLabel" class="button">Pick Color</h1> -->
                     <input type="color" id="colorPicker" value="#FFFFFF">
                 </div>
                 <h1 id="singleColor" class="button">Single Color</h1>
@@ -29,6 +40,7 @@
                 <h1 id="reset" class="button">Reset</h1>
         </div>
     </div>
+    <div id="blurAll"></div>
     <script src="./js/script.js"></script>
 </body>
 </html>
