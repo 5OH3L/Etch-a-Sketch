@@ -165,6 +165,11 @@ makeGrid(10)
 
 confirmBtn.addEventListener('click', getInput);
 cancelBtn.addEventListener('click', getInput);
+popup.addEventListener('keydown', (e)=>{
+    if(e.code == "Enter" || e.code == "Escape"){
+        getInput();
+    }
+});
 
 button.addEventListener('click', () => {
     getInput();
