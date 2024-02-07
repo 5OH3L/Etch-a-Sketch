@@ -234,7 +234,7 @@ html, body{
     transition: ease .3s;
 }
 #colorPicker::-webkit-color-swatch{
-    border: 2px solid white;
+    border: 2px solid black;
     border-radius: 1rem;
 }
 #colorPicker:active{
