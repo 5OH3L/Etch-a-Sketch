@@ -117,15 +117,12 @@ html, body{
 }
 .button:hover{
     transform: scale(.9);
+    background-color: black;
     box-shadow: 0 0 50px 10px white;
 }
 
 .button:active{
     transform: scale(.85);
-}
-
-.rainbow{
-    animation: rainbow 5s infinite;
 }
 #rainbow{
     transition: .5s ease;
