@@ -128,7 +128,16 @@ html, body{
     transition: .5s ease;
 }
 #rainbow:hover{
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+    min-width: 100%;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 10px;
     animation: rainbow 5s infinite;
+    animation-delay: .5s;
 }
 
 #reset{
