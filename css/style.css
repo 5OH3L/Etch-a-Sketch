@@ -111,7 +111,7 @@ html, body{
     text-align: center;
     padding: 5px 10px;
     border-radius: 10px;
-    transition: .5s ease;
+    transition: .2s ease;
     font-size: 1.3rem;
     letter-spacing: .1rem;
 }
@@ -141,7 +141,7 @@ html, body{
 }
 
 #reset{
-    transition: all .5s;
+    transition: all .3s;
 }
 
 #reset:hover{
