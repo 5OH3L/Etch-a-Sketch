@@ -266,9 +266,6 @@ singleColor.addEventListener('click', () => {
         singleColor.style.border = "2px solid black";
         isSingleColor = !isSingleColor;
         if(isRainbow){
-            rainbow.style.backgroundColor = "";
-            rainbow.style.color = "white";
-            rainbow.style.border = "2px solid white";
             rainbow.style.animation = "";
             isRainbow = !isRainbow;
         }else{
