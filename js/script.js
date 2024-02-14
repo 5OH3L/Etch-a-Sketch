@@ -1,6 +1,7 @@
 const container = document.getElementById('container');
 const button = document.getElementById('btn');
 const toggleBorder = document.getElementById('borderOnOff');
+const fillContainer = document.getElementById('fillContainer');
 const reset = document.getElementById('reset');
 const eraser = document.getElementById('eraser');
 const rainbow = document.getElementById('rainbow');
@@ -275,4 +276,9 @@ singleColor.addEventListener('click', () => {
             isEraser= !isEraser;
         }
     }
+});
+fillContainer.addEventListener("click", () => {
+    document.querySelectorAll("div#container div.row div.column").forEach((value) => {
+        value.style.backgroundColor = colorPicker.value;
+    })
 });

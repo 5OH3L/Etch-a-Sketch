@@ -329,3 +329,20 @@ html, body{
     opacity: 1;
     pointer-events: all;
 }
+#fillContainer{
+    transition: .5s ease;
+}
+#fillContainer:hover{
+    animation: blackGray 2s infinite .5s;
+}
+@keyframes blackGray {
+    from{
+        background-color: black;
+    }
+    50%{
+        background-color: white;
+    }
+    to{
+        background-color: black;
+    }
+}
